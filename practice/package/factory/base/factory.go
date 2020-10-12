@@ -7,8 +7,6 @@ type Class interface {
 var (
 	factoryByName = make(map[string]func() Class)
 )
-factory := make(map[string]func() Class)
-
 
 func Register(name string, factory func() Class) {
 	factoryByName[name] = factory
