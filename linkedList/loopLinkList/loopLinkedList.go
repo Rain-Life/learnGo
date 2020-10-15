@@ -2,6 +2,7 @@ package loopLinkList
 
 import "fmt"
 
+//循环链表
 type Object interface {}
 
 type Node struct {

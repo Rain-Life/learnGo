@@ -1,10 +1,14 @@
 package channel
 
-func Test() {
-	ch := make(chan int)
-	var chSendOnly chan<- int = ch
-	var chRecvOnly <-chan int = ch
+import "fmt"
 
-	ch1 := make(<-chan int)
-	che2 := make(chan<- int)
+func Test() {
+	ch := make(chan int, 3)
+	fmt.Println("当前通道大小：", len(ch))
+
+	ch <- 1
+	ch <- 2
+	ch <- 3
+
+	fmt.Println(len(ch))
 }

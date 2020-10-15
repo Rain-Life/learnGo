@@ -5,6 +5,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
+	"errors"
 	"fmt"
 )
 
@@ -62,15 +63,15 @@ func AesDecrypt(crypted, key []byte) ([]byte, error) {
  * @param originData 加密内容（保证是json格式的）
  * @param iv 偏移量（可以是随机生成的16位）
  */
-func AesCBCEncrypt(appSecret, originData, iv []byte) string {
+func AesCBCEncrypt(appSecret, originData, iv []byte) (string, error) {
 	if len(string(appSecret)) < 16 {
-		panic("秘钥长度不合法")
+		return "", errors.New("秘钥长度不合法")
 	}
 	
 	appSecret = appSecret[:16]
 	block, err := aes.NewCipher(appSecret)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
 
 	blockSize := block.BlockSize()
@@ -86,7 +87,7 @@ func AesCBCEncrypt(appSecret, originData, iv []byte) string {
 
 	entryResData := base64.StdEncoding.EncodeToString(readyEncryptData)
 
-	return entryResData
+	return entryResData, nil
 }
 
 

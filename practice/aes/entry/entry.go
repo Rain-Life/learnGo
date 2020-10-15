@@ -42,7 +42,10 @@ func main() {
     ]
 }`)
 
-	result := aes.AesCBCEncrypt(appSecret, originData, iv)
+	result,err := aes.AesCBCEncrypt(appSecret, originData, iv)
+	if err !=nil {
+		panic(err)
+	}
 	fmt.Println(result)
 
 	//var aeskey = []byte("5McUOZkZMoJym0JN")

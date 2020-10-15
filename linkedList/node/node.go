@@ -2,6 +2,7 @@ package node
 
 import "fmt"
 
+//单向链表
 type Object interface {}
 
 type Node struct {

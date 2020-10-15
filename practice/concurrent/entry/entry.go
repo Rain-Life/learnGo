@@ -6,5 +6,7 @@ func main() {
 	//concurrent.Run()
 	//channel.BingFaTongBu()
 	//channel.Forchannel()
-	channel.ExecFunc()
+	//channel.ExecFunc()
+	//channel.Test()
+	channel.Transfer()
 }
