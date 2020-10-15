@@ -64,7 +64,7 @@ func (list *List) Length() int {
 
 //从双向链表头部开始增加结点
 func (list *List) AddFromHead(data Object) *Node {
-	node := &Node{}
+	node := &Node{Data: data}
 	if list.IsEmpty() {
 		list.headNode = node
 		return node
@@ -79,7 +79,7 @@ func (list *List) AddFromHead(data Object) *Node {
 
 //从双向链表尾部添加结点
 func (list *List) Append(data Object) {
-	node := &Node{}
+	node := &Node{Data: data}
 	if list.IsEmpty() {
 		list.headNode = node
 	} else {
@@ -113,7 +113,7 @@ func (list *List) Insert(position int, data Object) {
 			count++
 		}
 		//找到了指定位置的结点，然后将要插入的结点，插到这个节点前边即可(注意顺序，画图最容易理解)
-		node := &Node{}
+		node := &Node{Data: data}
 		node.Next = currentNode
 		node.Prev = currentNode.Prev
 		currentNode.Prev.Next = node
@@ -152,16 +152,15 @@ func (list *List) RemoveLastNode() Object {
 	}
 	
 	currentNode := list.headNode
-	if currentNode.Next != nil {
+	for currentNode.Next != nil {
 		currentNode = currentNode.Next
 	}
-
 	currentNode.Prev.Next = nil
 
 	return currentNode.Prev.Data
 }
 
-//删除双线量表中指定值的结点（和单链表无区别）
+//删除双向表中指定值的结点
 func (list *List) Remove(data Object)  {
 	if list.IsEmpty() {
 		fmt.Println("链表为空")
@@ -173,20 +172,18 @@ func (list *List) Remove(data Object)  {
 		list.headNode = nil
 	}
 
-	for currentNode.Next != nil {
-		if currentNode.Data == data && currentNode.Prev == nil {
-			//删除该节点
+	fmt.Println(data, currentNode.Data, currentNode.Data == data)
+	for currentNode != nil {
+		if currentNode.Data == data && currentNode == list.headNode {
+			fmt.Println("jsfhsdgfhdsgfhgsdhfg")
+			list.headNode = currentNode.Next
+		} else if currentNode.Data == data && currentNode.Prev != nil {
 			currentNode.Prev.Next = currentNode.Next
 			currentNode.Next.Prev = currentNode.Prev
-		} else if currentNode.Data == data && currentNode.Prev != nil {
-			list.headNode = currentNode.Next
 		} else {
 			currentNode = currentNode.Next
 		}
 	}
-
-	//走到这里说明是最后一个节点了
-	currentNode.Prev.Next = nil
 }
 
 //删除双向链表中指定位置的结点
