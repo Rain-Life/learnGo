@@ -33,7 +33,7 @@ func main() {
 	print(list)
 
 	fmt.Println("++++++++5、向循环链指定位置添加结点++++++++")
-	list.Insert(2,"secondNode")
+	list.Insert(1,"secondNode")
 	print(list)
 
 	//fmt.Println("++++++++6、删除循环链的头结点++++++++")

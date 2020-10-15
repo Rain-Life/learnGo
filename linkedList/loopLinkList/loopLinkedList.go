@@ -79,7 +79,7 @@ func (list *List) Append(data Object) {
 
 //向循环链表的指定位置添加结点（跟单链表是一样的）
 func (list *List) Insert(position int, data Object) {
-	if position <= 0 {
+	if position <= 1 {
 		list.AddFromHead(data)
 	} else if position > list.Length() {
 		list.Append(data)

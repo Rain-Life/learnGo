@@ -65,7 +65,7 @@ func (list *List) Append(data Object) {
 
 //向单链表中指定位置添加结点
 func (list *List) Insert(position int, data Object) {
-	if position < 0 {
+	if position <= 1 {
 		list.AddFromHead(data)
 	} else if position > list.Length() {
 		list.Append(data)
@@ -173,5 +173,3 @@ func (list *List) Traverse()  {
 		currentNode = currentNode.Next
 	}
 }
-
-

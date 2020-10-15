@@ -47,7 +47,7 @@ func main() {
 
 	fmt.Println("++++++++5、向链表尾部添加结点++++++++")
 	fmt.Println()
-	list.Insert(3, "thirdNode")
+	list.Insert(11, "thirdNode")
 	print(list)
 
 	fmt.Println("++++++++6、删除链表头结点++++++++")
