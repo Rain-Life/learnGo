@@ -175,7 +175,6 @@ func (list *List) Remove(data Object)  {
 	fmt.Println(data, currentNode.Data, currentNode.Data == data)
 	for currentNode != nil {
 		if currentNode.Data == data && currentNode == list.headNode {
-			fmt.Println("jsfhsdgfhdsgfhgsdhfg")
 			list.headNode = currentNode.Next
 		} else if currentNode.Data == data && currentNode.Prev != nil {
 			currentNode.Prev.Next = currentNode.Next

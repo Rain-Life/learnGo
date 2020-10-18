@@ -1,0 +1,17 @@
+package goroutine
+
+import (
+	"fmt"
+	"time"
+)
+
+func GOroutineTest1() {
+	for i:=0; i< 1000; i++ {
+		go func(i int) {
+			for {
+				fmt.Printf("Hello from " + "goroutine %d\n", i)
+			}
+		}(i)
+	}
+	time.Sleep(time.Minute)
+}

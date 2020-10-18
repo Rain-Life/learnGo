@@ -208,6 +208,10 @@ func (list *List) Contain(data Object) bool {
 		currentNode = currentNode.Next
 	}
 
+	if currentNode.Data == data {
+		return true
+	}
+
 	return false
 }
 
@@ -219,7 +223,7 @@ func (list *List) Traverse() {
 	}
 
 	currentNode := list.headNode
-	if currentNode.Next == list.headNode { //兼容双向链表只有一个结点的情况
+	if currentNode.Next == list.headNode { //兼容循环链表只有一个结点的情况
 		fmt.Printf("%v\t", currentNode.Data)
 		return
 	}
