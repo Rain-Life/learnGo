@@ -150,7 +150,7 @@ func (list *List) RemovePosition(position int) {
 
 	if position <= 1 {
 		list.RemoveHeadNde()
-	} else if position >= list.Length() {
+	} else if position > list.Length() {
 		list.RemoveLastNode()
 	} else {
 		currentNode := list.headNode

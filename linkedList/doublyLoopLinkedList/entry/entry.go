@@ -21,11 +21,45 @@ func main() {
 	fmt.Println()
 	fmt.Println()
 
-	fmt.Println("++++++++2、向双向链表头部添加元素++++++++")
+	fmt.Println("++++++++2、向双向循环链表头部添加结点++++++++")
 	fmt.Println()
 	list.AddFromHead(1)
 	list.AddFromHead(2)
 	list.AddFromHead(3)
-	fmt.Println("44444")
+	print(list)
+
+	fmt.Println("++++++++3、向双向循环链表尾部添加结点++++++++")
+	fmt.Println()
+	list.Append("lastNode")
+	print(list)
+
+	fmt.Println("++++++++4、向双向循环链表指定位置添加结点++++++++")
+	fmt.Println()
+	list.Insert(1,"firstNode")
+	print(list)
+
+	fmt.Println("++++++++5、删除双向循环链表头结点++++++++")
+	fmt.Println()
+	list.RemoveHeadNde()
+	print(list)
+
+	fmt.Println("++++++++6、删除双向循环链表尾结点++++++++")
+	fmt.Println()
+	list.RemoveLastNode()
+	print(list)
+
+	fmt.Println("++++++++7、删除双向循环链表中指定值的结点++++++++")
+	fmt.Println()
+	list.Remove(1)
+	print(list)
+
+	fmt.Println("++++++++8、删除双向循环链表中指定位置的结点++++++++")
+	fmt.Println()
+	list.RemovePosition(list.Length()-1)
+	print(list)
+
+	fmt.Println("++++++++9、查询双向循环链表中是否包含某一个结点++++++++")
+	fmt.Println()
+	fmt.Println("是否包含值为firstNode的结点：", list.Contain("firstNode"))
 	print(list)
 }

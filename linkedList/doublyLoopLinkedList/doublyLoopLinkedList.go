@@ -64,7 +64,6 @@ func (list *List) Length() int {
 func (list *List) AddFromHead(data Object) *Node {
 	node := &Node{Data: data}
 	if list.IsEmpty() {
-		fmt.Println("11111")
 		list.headNode = node
 		return node
 	}
@@ -72,11 +71,11 @@ func (list *List) AddFromHead(data Object) *Node {
 	currentNode := list.headNode
 
 	if currentNode.Next == nil { //考虑只有一个节点的时候
-		currentNode.Prev = node
-		node.Next = currentNode
-		currentNode.Next = node
 		node.Prev = currentNode
-		fmt.Println("2222")
+		currentNode.Next = node
+		node.Next = currentNode
+		currentNode.Prev = node
+		list.headNode = node
 		return node
 	}
 
@@ -84,7 +83,6 @@ func (list *List) AddFromHead(data Object) *Node {
 	currentNode.Prev.Next = node
 	currentNode.Prev = node
 	node.Next = currentNode
-	fmt.Println("33333")
 
 	list.headNode = node
 
@@ -112,7 +110,7 @@ func (list *List) Append(data Object) *Node {
 func (list *List) Insert(position int, data Object) {
 	if position <=1 {
 		list.AddFromHead(data)
-	} else if position >= list.Length() {
+	} else if position > list.Length() {
 		list.Append(data)
 	} else {
 		node := &Node{Data: data}
@@ -224,11 +222,11 @@ func (list *List) RemovePosition(position int) {
 
 	if position <= 1 {
 		list.RemoveHeadNde()
-	} else if position >= list.Length() {
+	} else if position > list.Length() {
 		list.RemoveLastNode()
 	} else {
 		currentNode := list.headNode
-		count := 0
+		count := 1
 		for count != position {
 			count++
 			currentNode = currentNode.Next
