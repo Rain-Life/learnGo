@@ -42,6 +42,7 @@ func (list *List) Traverse() {
 		fmt.Println("链表为空")
 		return
 	}
+
 	currentNode := list.headNode
 	for currentNode != nil {
 		fmt.Printf("%v\t", currentNode.Data)
@@ -79,15 +80,21 @@ func (list *List) ReverseListHead() {
 	}
 
 	newList := &List{}
-	newHead := newList.headNode
-	newCurrentNode := list.headNode
-
-	for newCurrentNode != nil {
-		nextNode := newCurrentNode.Next
-		newCurrentNode.Next = newHead.Next
-		newHead.Next = newCurrentNode
-		newCurrentNode = nextNode
+	currentNode := list.headNode
+	nextNode := currentNode.Next
+	for currentNode!=nil {
+		if newList.headNode == nil {
+			newList.headNode = currentNode
+			newList.headNode.Next = nil
+			currentNode = nextNode
+			continue
+		}
+		nextNode = currentNode.Next
+		currentNode.Next = newList.headNode
+		newList.headNode = currentNode
+		currentNode = nextNode
 	}
-	fmt.Println("反转后")
 
+	fmt.Println("反转后")
+	newList.Traverse()
 }
