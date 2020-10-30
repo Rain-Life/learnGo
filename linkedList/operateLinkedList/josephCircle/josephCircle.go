@@ -50,31 +50,32 @@ func (list *List)CreateLoopList(data []Object)  {
 }
 
 //单向链表解决约瑟夫问题
-func (list *List) dealJosephCircle(number int) []interface{} {
-	//需要考虑链表只有一个节点的情况
+func (list *List) DealJosephCircle(number int) []interface{} {
 	var data []interface{}
 	index := 1
 	currentNode := list.headNode
-	//preNode := list.headNode
+	preNode := list.headNode
+	for preNode.Next != list.headNode {
+		preNode = preNode.Next //刚开始，使preNode指向最后一个节点
+	}
 
-	for list.headNode != nil {
-		//只有一个节点的情况
-		if currentNode.Next == list.headNode {
-			data = append(data, currentNode.Data)
-			list.headNode = nil
-			continue
-		}
-
+	for currentNode.Next != currentNode {
 		if index == number {
 			//删除结点，其实不用考虑是不是头结点或尾结点
+			data = append(data, currentNode.Data)
+			preNode.Next = currentNode.Next
+			currentNode = preNode.Next
+			index = 1
 
-
-			index = 0
+			continue
 		} else {
 			index++
 		}
-
+		preNode = currentNode
 		currentNode = currentNode.Next
 	}
+	data = append(data, currentNode.Data)
+	currentNode = nil
+
 	return data
 }
